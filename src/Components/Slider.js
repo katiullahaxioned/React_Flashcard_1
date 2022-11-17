@@ -24,6 +24,10 @@ const Slider = () => {
 
   // useEffect()
   useEffect(() => {
+    for (let item of sliderUL.current.children) {
+      item.classList.remove("active");
+    }
+    
     sliderUL.current.children[num].classList.add("active");
   }, [num]);
 
@@ -32,10 +36,6 @@ const Slider = () => {
     const items = sliderUL.current.children;
     setNum(num - 1);
     if (num <= 0) setNum(items.length - 1);
-
-    for (let item of items) {
-      item.classList.remove("active");
-    }
   };
 
   // nextView()
@@ -43,10 +43,6 @@ const Slider = () => {
     const items = sliderUL.current.children;
     setNum(num + 1);
     if (num >= items.length - 1) setNum(0);
-
-    for (let item of sliderUL.current.children) {
-      item.classList.remove("active");
-    }
   };
   
   return (
