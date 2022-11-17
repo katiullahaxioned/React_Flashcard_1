@@ -1,8 +1,12 @@
 import React from 'react';
+import Home from './Components/Home';
+import './Components/Style.css';
 
 const App = () => {
   return (
-    <div>App</div>
+    <>
+      <Home />
+    </>
   )
 }
 
