@@ -1,16 +1,7 @@
 import React from 'react'
 import { ArrowLeft, ArrowRight } from '../assets/CustomLogo'
 
-const SliderControls = () => {
-
-  const prevView = () => {
-
-  }
-
-  const nextView = () => {
-    
-  }
-
+const SliderControls = ({prevView, nextView}) => {
   return (
     <>
       <ul className="slider-controls">

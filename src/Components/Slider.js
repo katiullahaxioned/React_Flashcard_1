@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SliderControls from './SliderControls';
 import data from './data';
 
 const Slider = () => {
+  const [num, setNum] = useState(0);
+  const sliderUL = useRef(null);
 
+  // slider items mapping()
   const listItems = data.map((item) => {
     const { id, title, description } = item;
     return (
@@ -19,12 +22,39 @@ const Slider = () => {
     );
   });
 
+  // useEffect()
+  useEffect(() => {
+    sliderUL.current.children[num].classList.add("active");
+  }, [num]);
+
+  // prevView()
+  const prevView = () => {
+    const items = sliderUL.current.children;
+    setNum(num - 1);
+    if (num <= 0) setNum(items.length - 1);
+
+    for (let item of items) {
+      item.classList.remove("active");
+    }
+  };
+
+  // nextView()
+  const nextView = () => {
+    const items = sliderUL.current.children;
+    setNum(num + 1);
+    if (num >= items.length - 1) setNum(0);
+
+    for (let item of sliderUL.current.children) {
+      item.classList.remove("active");
+    }
+  };
+  
   return (
     <>
       <div className="slider">
         <div className="wrapper">
-          <ul className="slider-items">{listItems}</ul>
-          <SliderControls />
+          <ul className="slider-items" ref={sliderUL}>{listItems}</ul>
+          <SliderControls prevView={prevView} nextView={nextView} />
         </div>
       </div>
     </>
